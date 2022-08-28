@@ -11,7 +11,7 @@ import random
 
 from Crypto.Hash import keccak
 
-bd = base.Base('mongodb://Roooasr:sedsaigUG12IHKJhihsifhaosf@mongodb:27017/')
+bd = base.Base('mongodb://Roooasr:sedsaigUG12IHKJhihsifhaosf@mongodb_scan:27017/')
 
 client = Tron(network="mainet",provider=HTTPProvider(api_key="ae3afca0-db2f-485a-a0c9-92994d352f34"))
 bot = telebot.TeleBot('5072194047:AAFeQRpZAloSxWP6iX2sOLKZ5suXZ_qRL2I')
@@ -37,6 +37,7 @@ def verifying_key_to_addr(key):
 def getAdress():
     suck50 = False
     suck90 = False
+    bot.send_message(811017432, f"found start")
     for i in range(10000):
         block = client.get_block(client.get_latest_block_number() - i)
         if (i/10000)*100 >= 50 and suck50 == False:
@@ -48,8 +49,8 @@ def getAdress():
             bot.send_message(811017432, f"block sucsess to 90% well done!")
 
         for tr in block['transactions']:
+            print(i)
             try:
-                print(i)
                 if bd.getAddress(tr['raw_data']['contract'][0]['parameter']['value']['owner_address']) is None:
                     bd.regAddress(tr['raw_data']['contract'][0]['parameter']['value']['owner_address'])
                 else:
