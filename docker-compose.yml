@@ -9,8 +9,8 @@ services:
       context: .
     ports:
       - 1235:1235
-  mongodb:
-    container_name: mongodb
+  mongodbb_scan:
+    container_name: mongodb_scan
     image: 'mongo'
     environment:
       - MONGO_INITDB_DATABASE=Scan
